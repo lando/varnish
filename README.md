@@ -1,65 +1,41 @@
-# Lando Varnish Plugin
+# Varnish Lando Plugin
 
-The Lando Varnish plugin service.
+This is the _official_ [Lando](https://lando.dev) plugin for [Varnish](https://varnish-cache.org/intro/index.html#intro). When installed it...
 
-## Installation
+* Allows users to run various `varnish` versions
 
-```bash
-# With npm
-npm install @lando/varnish
+Of course, once a user is running their Varnish project with Lando they can take advantage of [all the other awesome development features](https://docs.lando.dev) Lando provides.
 
-# With yarn
-yarn add @lando/varnish
+## Basic Usage
+
+Add a `varnish` service to your Landofile
+
+```yaml
+services:
+  myservice:
+    type: varnish
+    backends:
+      - appserver
+    backend_port: 80
 ```
+
+For more info you should check out the [docs](https://docs.lando.dev/varnish):
+
+* [Getting Started](https://docs.lando.dev/varnish/)
+* [Configuration](https://docs.lando.dev/varnish/config.html)
+* [Guides](https://docs.lando.dev/varnish/accessing-logs.html)
+* [Examples](https://github.com/lando/varnish/tree/main/examples)
+* [Development](https://docs.lando.dev/varnish/development.html)
 
 ## Issues, Questions and Support
 
-If you have a question or would like some community support we recommend you [join us on Slack](https://launchpass.com/devwithlando). Note that this is the Slack community for [Lando](https://lando.dev) but we are more than happy to help with this module as well!
+If you have a question or would like some community support we recommend you [join us on Slack](https://launchpass.com/devwithlando).
 
 If you'd like to report a bug or submit a feature request then please [use the issue queue](https://github.com/lando/varnish/issues/new/choose) in this repo.
 
 ## Changelog
 
 We try to log all changes big and small in both [THE CHANGELOG](https://github.com/lando/varnish/blob/main/CHANGELOG.md) and the [release notes](https://github.com/lando/varnish/releases).
-
-
-## Development
-
-* Requires [Node 14+](https://nodejs.org/dist/latest-v14.x/)
-* Prefers [Yarn](https://classic.yarnpkg.com/lang/en/docs/install)
-
-```bash
-git clone https://github.com/lando/varnish.git && cd varnish
-yarn install
-```
-
-If you dont' want to install Node 14 or Yarn for whatever reason you can install [Lando](https://docs.lando.dev/basics/installation.html) and use that:
-
-```bash
-git clone https://github.com/lando/varnish.git && cd varnish
-# Install deps and get node
-lando start
-
-# Run commands
-lando node
-lando yarn
-```
-
-## Testing
-
-```bash
-# Lint the code
-yarn lint
-
-# Run unit tests
-yarn test
-```
-
-## Releasing
-
-```bash
-yarn release
-```
 
 ## Contributors
 
@@ -69,6 +45,7 @@ yarn release
 
 Made with [contributors-img](https://contrib.rocks).
 
-## Other Resources
+## Other Selected Resources
 
-* [Important advice](https://www.youtube.com/watch?v=WA4iX5D9Z64)
+* [LICENSE](https://github.com/lando/varnish/blob/main/LICENSE.md)
+* [The best professional advice ever](https://www.youtube.com/watch?v=tkBVDh7my9Q)

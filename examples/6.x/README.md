@@ -22,8 +22,8 @@ Verification commands
 Run the following commands to validate things are rolling as they should.
 
 ```bash
-# Should use varnish 6.0.9 by user specification
-lando ssh -s defaults -c "varnishd -V 2>&1 | grep varnish-6.0.9"
+# Should use varnish 6.0.10 by user specification
+lando ssh -s defaults -c "varnishd -V 2>&1 | grep varnish-6.0.10"
 
 # Should backend from appserver by default
 lando ssh -s defaults -c "curl localhost | grep sophisticated"
