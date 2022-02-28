@@ -1,6 +1,7 @@
 ---
 title: Varnish Lando Plugin
 description: Add a highly configurable varnish service to Lando for local development with all the power of Docker and Docker Compose.
+next: ./config.html
 ---
 
 # Varnish
