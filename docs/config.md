@@ -81,7 +81,7 @@ services:
 
 ## Advanced
 
-There are also [several various envvars](https://github.com/wodby/varnish) exposed by the underlying image we use that you can set to further customize how your Varnish works. **These are not officially supported** so we *highly recommend* you do not alter them unless you know what you are doing. Even then, YMMV.
+There are also [several various envvars](https://github.com/wodby/varnish#environment-variables) exposed by the underlying image we use that you can set to further customize how your Varnish works. **These are not officially supported** so we *highly recommend* you do not alter them unless you know what you are doing. Even then, YMMV.
 
 That said, you will need to use a [service override](https://docs.lando.dev/config/services.html#overrides) to take advantage of them as shown below:
 
