@@ -2,7 +2,7 @@
 
 // Modules
 const _ = require('lodash');
-const utils = require('./../../lib/utils');
+const utils = require('./lib/utils');
 
 // Helper to get varnsh ssl nginx
 const varnishSsl = options => ({
@@ -29,7 +29,7 @@ module.exports = {
     version: '4.1',
     supported: ['6', '6.0', '4', '4.1'],
     backends: ['appserver'],
-    confSrc: __dirname,
+    confSrc: path.resolve(__dirname, '..', 'config'),
     backend_port: '80',
     ssl: false,
     sslExpose: false,
@@ -87,7 +87,7 @@ module.exports = {
           config: `${options.confDest}/${options.defaultFiles.ssl}`,
           info: {backend: 'edge', managed: true},
           meUser: 'www-data',
-          overrides: utils.cloneOverrides(options.overrides),
+          overrides: require('../utils/clone-overrides')(options.overrides),
           ssl: true,
           sslExpose: true,
         });
