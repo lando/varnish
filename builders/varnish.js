@@ -2,6 +2,7 @@
 
 // Modules
 const _ = require('lodash');
+const path = require('path');
 
 // Helper to get varnsh ssl nginx
 const varnishSsl = options => ({
