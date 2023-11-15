@@ -34,7 +34,7 @@ const addDependencies = options => {
 
   // Make an array of absolute paths to the plugins we need to add
   const varnishServicesPath = varnishServices.map(service => {
-    return path.join(__dirname, `../../node_modules/@lando/${service}`);
+    return path.join(__dirname, `../node_modules/@lando/${service}`);
   });
 
   // Loop that array and add each plugin to the registry and move scripts if the folder exists.
