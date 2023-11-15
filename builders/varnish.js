@@ -22,6 +22,36 @@ const varnishSsl = options => ({
   ],
 });
 
+// Add hardcoded varnishServices to lando.factory.registry.
+const addDependencies = options => {
+  const lando = _.get(options, '_app._lando');
+  // Traverse registry and remove any services that we have locally
+  const varnishServices = ['nginx'];
+  _.remove(lando.factory.registry, service => {
+    return _.includes(varnishServices, service.name);
+  });
+
+  // Make an array of absolute paths to the plugins we need to add
+  const varnishServicesPath = varnishServices.map(service => {
+    return path.join(__dirname, `../../node_modules/@lando/${service}`);
+  });
+
+  // Loop that array and add each plugin to the registry and move scripts if the folder exists.
+  varnishServicesPath.forEach(servicePath => {
+    // Add the plugin to the registry
+    lando.factory.add(path.join(servicePath, 'builders', `${servicePath.split('/').pop()}.js`));
+
+    // Move the script to the conDir and make executable.
+    if (fs.existsSync(path.join(servicePath, 'scripts'))) {
+      const confDir = path.join(lando.config.userConfRoot, 'scripts');
+      const dest = lando.utils.moveConfig(path.join(servicePath, 'scripts'), confDir);
+      lando.utils.makeExecutable(fs.readdirSync(dest), dest);
+      lando.log.debug('automoved scripts from %s to %s and set to mode 755',
+        path.join(servicePath, 'scripts'), confDir);
+    }
+  });
+};
+
 // Builder
 module.exports = {
   name: 'varnish',
@@ -45,6 +75,8 @@ module.exports = {
   builder: (parent, config) => class LandoVarnish extends parent {
     constructor(id, options = {}, factory) {
       options = _.merge({}, config, options);
+      addDependencies(options);
+
       // Arrayify the backend
       if (!_.isArray(options.backends)) options.backends = [options.backends];
       // Build the default stuff here
