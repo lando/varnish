@@ -28,4 +28,4 @@ services:
 plugins:
   "@lando/varnish": ./../../
   "@lando/python": ./../../node_modules/@lando/python
-  "@lando/nginx": "./../../node_modules/@lando/nginx
+  "@lando/nginx": ./../../node_modules/@lando/nginx
