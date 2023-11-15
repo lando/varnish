@@ -1,8 +1,9 @@
 'use strict';
 
 // Modules
-const _ = require('lodash');
+const fs = require('fs');
 const path = require('path');
+const _ = require('lodash');
 
 // Helper to get varnsh ssl nginx
 const varnishSsl = options => ({
