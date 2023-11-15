@@ -1,3 +1,7 @@
+## v0.9.0 - [November 15, 2023](https://github.com/lando/varnish/releases/tag/v0.9.0)
+* Moved builder file to the new builders/ directory.
+* Isolated testing to fit with HARDCORE strategy.
+
 ## v0.8.0 - [July 3, 2023](https://github.com/lando/varnish/releases/tag/v0.8.0)
   * Removed bundle-dependencies and version-bump-prompt from plugin.
   * Updated package to use prepare-release-action.
