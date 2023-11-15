@@ -9,3 +9,4 @@ services:
 # DO NOT REMOVE THIS!
 plugins:
   "@lando/varnish": ./../../
+  "@lando/nginx": ./../../node_modules/@lando/nginx
