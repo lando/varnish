@@ -1,3 +1,6 @@
+## v0.9.1 - [November 16, 2023](https://github.com/lando/varnish/releases/tag/v0.9.1)
+* Updated release github workflow.
+
 ## v0.9.0 - [November 15, 2023](https://github.com/lando/varnish/releases/tag/v0.9.0)
 * Moved builder file to the new builders/ directory.
 * Isolated testing to fit with HARDCORE strategy.
