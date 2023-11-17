@@ -115,7 +115,7 @@ module.exports = {
         // Set the opts for this custom swill
         const sslOpts = _.assign(_.cloneDeep(options), {
           name: `${options.name}_ssl`,
-          type: 'nginx',
+          type: 'varnish-nginx',
           version: 'custom',
           config: `${options.confDest}/${options.defaultFiles.ssl}`,
           info: {backend: 'edge', managed: true},
