@@ -1,3 +1,6 @@
+## v0.11.0 - [November 24, 2023](https://github.com/lando/varnish/releases/tag/v0.11.0)
+* Removed logic hardcoding varnish-nginx into registry, correctly extends nginx to create our own namespaced varnish-nginx. [#30](https://github.com/lando/varnish/pull/30)
+
 ## v0.10.0 - [November 17, 2023](https://github.com/lando/varnish/releases/tag/v0.10.0)
 * Created a varnish-nginx service to use for SSL.
 
