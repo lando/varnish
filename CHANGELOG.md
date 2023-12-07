@@ -1,3 +1,6 @@
+## v1.0.0 - [December 7, 2023](https://github.com/lando/varnish/releases/tag/v1.0.0)
+    * Dialed fully for `lando update`
+
 ## v0.11.0 - [November 24, 2023](https://github.com/lando/varnish/releases/tag/v0.11.0)
 * Removed logic hardcoding varnish-nginx into registry, correctly extends nginx to create our own namespaced varnish-nginx. [#30](https://github.com/lando/varnish/pull/30)
 
