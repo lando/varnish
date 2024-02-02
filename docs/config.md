@@ -52,7 +52,7 @@ services:
 
 ## Using SSL
 
-In order to access varnish over `https`, you only need to set `ssl: true`. However, because [varnish is not built to run over https](https://www.section.io/blog/varnish-cache-https/), we will spin up an additional `nginx` container called `SERVICE_ssl` and handle SSL termination there.
+In order to access varnish over `https`, you only need to set `ssl: true`. However, because [varnish is not built to run over https](https://www.smashingmagazine.com/2015/09/https-everywhere-with-nginx-varnish-apache/), we will spin up an additional `nginx` container called `SERVICE_ssl` and handle SSL termination there.
 
 ## Using a custom VCL file
 

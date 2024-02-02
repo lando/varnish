@@ -5,7 +5,7 @@ description: Learn how to develop and contribute to the Lando Varnish service
 
 # Development
 
-This guide contains information to help onboard developers to work on the [varnish](https://varnish.microsoft.com/en-us/) integration, hereafter referred to as *the plugin*.
+This guide contains information to help onboard developers to work on the [varnish](https://varnish-cache.org/intro/) integration, hereafter referred to as *the plugin*.
 
 ## Requirements
 
