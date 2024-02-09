@@ -5,9 +5,9 @@ description: Learn how to configure the Lando Varnish service.
 
 # Configuration
 
-Here are the configuration options, set to the default values, for this service. If you are unsure about where this goes or what this means, we *highly recommend* scanning the [services documentation](https://docs.lando.dev/config/services.html) to get a good handle on how the magicks work.
+Here are the configuration options, set to the default values, for this service. If you are unsure about where this goes or what this means, we *highly recommend* scanning the [services documentation](https://docs.lando.dev/core/v3/lando-service.html) to get a good handle on how the magicks work.
 
-Also note that options, in addition to the [build steps](https://docs.lando.dev/config/services.html#build-steps) and [overrides](https://docs.lando.dev/config/services.html#overrides) that are available to every service, are shown below:
+Also note that options, in addition to the [build steps](https://docs.lando.dev/core/v3/lando-service.html#build-steps) and [overrides](https://docs.lando.dev/core/v3/lando-service.html#overrides) that are available to every service, are shown below:
 
 ```yaml
 services:
@@ -52,7 +52,7 @@ services:
 
 ## Using SSL
 
-In order to access varnish over `https`, you only need to set `ssl: true`. However, because [varnish is not built to run over https](https://www.section.io/blog/varnish-cache-https/), we will spin up an additional `nginx` container called `SERVICE_ssl` and handle SSL termination there.
+In order to access varnish over `https`, you only need to set `ssl: true`. However, because [varnish is not built to run over https](https://www.smashingmagazine.com/2015/09/https-everywhere-with-nginx-varnish-apache/), we will spin up an additional `nginx` container called `SERVICE_ssl` and handle SSL termination there.
 
 ## Using a custom VCL file
 
@@ -81,9 +81,9 @@ services:
 
 ## Advanced
 
-There are also [several various envvars](https://github.com/wodby/varnish#environment-variables) exposed by the underlying image we use that you can set to further customize how your Varnish works. **These are not officially supported** so we *highly recommend* you do not alter them unless you know what you are doing. Even then, YMMV.
+There are also [several envvars](https://github.com/wodby/varnish) exposed by the underlying image we use that you can set to further customize how your Varnish works. **These are not officially supported** so we *highly recommend* you do not alter them unless you know what you are doing. Even then, YMMV.
 
-That said, you will need to use a [service override](https://docs.lando.dev/config/services.html#overrides) to take advantage of them as shown below:
+That said, you will need to use a [service override](https://docs.lando.dev/core/v3/lando-service.html#overrides) to take advantage of them as shown below:
 
 ```yaml
 myservice:
