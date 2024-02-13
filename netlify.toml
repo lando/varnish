@@ -39,9 +39,9 @@
 # We need this so preview environments and the base site look ok on their own
 [[redirects]]
   from = "/"
-  to = "/varnish"
+  to = "/plugins/varnish"
   status = 200
 [[redirects]]
-  from = "/varnish/*"
+  from = "/plugins/varnish/*"
   to = "/:splat"
   status = 200
