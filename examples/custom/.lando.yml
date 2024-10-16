@@ -1,7 +1,7 @@
 name: lando-varnish
 services:
   custom:
-    type: varnish:4
+    type: varnish:6.0
     backends:
       - appserver
     ssl: true
