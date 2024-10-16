@@ -6,15 +6,17 @@ const _ = require('lodash');
 
 // Helper to get varnsh ssl nginx
 const varnishSsl = options => ({
+  image: 'bitnami/nginx:1.27.2-debian-12-r0',
   command: `/launch.sh /opt/bitnami/nginx/conf/lando.conf`,
-  image: 'bitnami/nginx:1.17.10-debian-10-r52',
   depends_on: [options.name],
   environment: {
+    NGINX_HTTP_PORT_NUMBER: '80',
     NGINX_DAEMON_USER: 'root',
     NGINX_DAEMON_GROUP: 'root',
-    LANDO_VARNISH_ALIAS: `${options.name}_varnish`,
     LANDO_NEEDS_EXEC: 'DOEEET',
+    LANDO_VARNISH_ALIAS: `${options.name}_varnish`,
   },
+  ports: ['80'],
   user: 'root',
   volumes: [
     `${options.confDest}/launch.sh:/launch.sh`,
