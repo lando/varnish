@@ -1,5 +1,6 @@
 ## {{ UNRELEASED_VERSION }} - [{{ UNRELEASED_DATE }}]({{ UNRELEASED_LINK }})
   * Updated default Varnish image to 6.0
+  * Fixed bug where data dir was not being mounted correctly
 
 ## v1.1.0 - [March 8, 2024](https://github.com/lando/varnish/releases/tag/v1.1.0)
   * Updated to latest database services.
