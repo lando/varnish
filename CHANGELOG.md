@@ -1,6 +1,7 @@
 ## {{ UNRELEASED_VERSION }} - [{{ UNRELEASED_DATE }}]({{ UNRELEASED_LINK }})
 
 * Updated builder to use pinned versions of `wodby/varnish` images
+* Fixed bug where data dir was not being mounted correctly
 
 ## v1.3.1 - [January 18, 2025](https://github.com/lando/varnish/releases/tag/v1.3.1)
 

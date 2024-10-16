@@ -61,6 +61,7 @@ module.exports = {
         },
         ports: ['80'],
         volumes: [
+          `${options.data}:/var/lib/varnish`,
           `${options.confDest}/lando.default.vcl.tmpl:/etc/gotpl/default.vcl.tmpl`,
           `${options.confDest}/lando.varnishd.init.d.tmpl:/etc/gotpl/varnishd.init.d.tmpl`,
         ],
