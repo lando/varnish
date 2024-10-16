@@ -12,7 +12,7 @@ Also note that options, in addition to the [build steps](https://docs.lando.dev/
 ```yaml
 services:
   myservice:
-    type: varnish:4.1
+    type: varnish:6
     backends:
       - appserver
     backend_port: 80

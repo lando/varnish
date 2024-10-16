@@ -13,7 +13,7 @@ You can easily add it to your Lando app by adding an entry to the [services](htt
 ```yaml
 services:
   myservice:
-    type: varnish
+    type: varnish:6
     backends:
       - appserver
     backend_port: 80
@@ -21,9 +21,9 @@ services:
 
 ## Supported versions
 
-*   [6.0](https://hub.docker.com/r/wodby/varnish)
+*   **[6.0](https://hub.docker.com/r/wodby/varnish)** **(default)**
 *   [6](https://hub.docker.com/r/wodby/varnish)
-*   **[4.1](https://hub.docker.com/r/wodby/varnish)** **(default)**
+*   [4.1](https://hub.docker.com/r/wodby/varnish)
 *   [4](https://hub.docker.com/r/wodby/varnish)
 *   [custom](https://docs.lando.dev/core/v3/services/lando.html#overrides)
 
