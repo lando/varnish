@@ -19,7 +19,7 @@ services:
 
 ## Supported versions
 
-*   [6.0](https://hub.docker.com/r/wodby/varnish)
+*   **[6.0](https://hub.docker.com/r/wodby/varnish)** **(default)**
 *   [6](https://hub.docker.com/r/wodby/varnish)
 *   [custom](https://docs.lando.dev/services/lando-3.html#overrides)
 
