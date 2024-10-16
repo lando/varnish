@@ -22,10 +22,10 @@ Verification commands
 Run the following commands to validate things are rolling as they should.
 
 ```bash
-# Should also serve over https if specified
+# Should serve over https if specified
 lando ssh -s custom_ssl -c "curl https://localhost | grep sophisticated"
 
-# Shoule use a custom vcl file if specified
+# Should use a custom vcl file if specified
 lando ssh -s custom -c "cat /etc/varnish/lando.vcl | grep LANDOVARNISH"
 lando ssh -s custom -c "env | grep LANDO_CUSTOM_VCL | grep YOUBETCHA"
 lando ssh -s custom -c "curl -I localhost" | grep X-Lando-Varnish | grep capes
