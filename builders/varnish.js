@@ -26,8 +26,10 @@ const varnishSsl = options => ({
 module.exports = {
   name: 'varnish',
   config: {
-    version: '4.1',
+    version: '6.0',
     supported: ['6', '6.0', '4', '4.1'],
+    patchesSupported: true,
+    legacy: ['4', '4.1'],
     backends: ['appserver'],
     confSrc: path.resolve(__dirname, '..', 'config'),
     backend_port: '80',
