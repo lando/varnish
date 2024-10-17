@@ -1,4 +1,4 @@
-name: lando-varnish
+name: lando-varnish-custom
 services:
   custom:
     type: varnish:6.0
