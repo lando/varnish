@@ -23,7 +23,7 @@ Run the following commands to validate things are rolling as they should.
 lando exec curl -- curl https://custom_ssl | grep sophisticated
 lando exec curl -- curl https://customport_ssl | grep SAWGUERROA
 
-# Shoule use a custom vcl file if specified
+# Should use a custom vcl file if specified
 lando exec custom -- cat /etc/varnish/lando.vcl | grep LANDOVARNISH
 lando exec custom -- env | grep LANDO_CUSTOM_VCL | grep YOUBETCHA
 lando exec custom -- curl -I localhost | grep X-Lando-Varnish | grep capes
