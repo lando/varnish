@@ -22,6 +22,14 @@ services:
     type: python
     port: 8000
     command: python /app/python.py
+  curly:
+    api: 4
+    image: curlimages/curl
+    command: sleep infinity
+
+tooling:
+  curl:
+    service: curly
 
 # This is important because it lets lando know to test against the plugin in this repo
 # DO NOT REMOVE THIS!

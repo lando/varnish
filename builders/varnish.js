@@ -96,7 +96,6 @@ module.exports = {
           overrides: require('../utils/clone-overrides')(options.overrides),
           ssl: true,
           sslExpose: true,
-          build_as_root: ['apt-get update && apt-get install -y curl'],
         });
 
         // Set another lando service we can pass down the stream
