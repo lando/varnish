@@ -1,4 +1,4 @@
-# Varnish Example
+# CustomVarnish Example
 
 
 This example exists primarily to test the following documentation:
@@ -21,22 +21,22 @@ Run the following commands to validate things are rolling as they should.
 
 ```bash
 # Should serve over https if specified
-lando exec curly -- curl https://custom_ssl.lando.internal | grep sophisticated
+lando exec curly -- curl https://custom_ssl.landovarnishcustom.internal | grep sophisticated
 
 # Should use a custom vcl file if specified
 lando exec custom -- cat /etc/varnish/lando.vcl | grep LANDOVARNISH
 lando exec custom -- env | grep LANDO_CUSTOM_VCL | grep YOUBETCHA
-lando exec curly -- curl -I custom.lando.internal | grep X-Lando-Varnish | grep capes
+lando exec curly -- curl -I custom.landovarnishcustom.internal | grep X-Lando-Varnish | grep capes
 
 # Should inherit overrides from its generator
 lando exec custom -- env | grep MEGAMAN | grep X
 lando exec custom_ssl -- env | grep MEGAMAN | grep X
 
 # Should use a custom backend port when specified
-lando exec curly -- curl http://customport.lando.internal | grep SAW
+lando exec curly -- curl http://customport.landovarnishcustom.internal | grep SAW
 
 # Should use a custom backend port with SSL if specified
-lando exec curly -- curl https://customport_ssl.lando.internal | grep SAW
+lando exec curly -- curl https://customport_ssl.landovarnishcustom.internal | grep SAW
 ```
 
 ## Destroy tests
