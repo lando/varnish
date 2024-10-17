@@ -6,15 +6,17 @@ const _ = require('lodash');
 
 // Helper to get varnsh ssl nginx
 const varnishSsl = options => ({
+  image: 'bitnami/nginx:1.27.2-debian-12-r0',
   command: `/launch.sh /opt/bitnami/nginx/conf/lando.conf`,
-  image: 'bitnami/nginx:1.17.10-debian-10-r52',
   depends_on: [options.name],
   environment: {
+    NGINX_HTTP_PORT_NUMBER: '80',
     NGINX_DAEMON_USER: 'root',
     NGINX_DAEMON_GROUP: 'root',
-    LANDO_VARNISH_ALIAS: `${options.name}_varnish`,
     LANDO_NEEDS_EXEC: 'DOEEET',
+    LANDO_VARNISH_ALIAS: `${options.name}_varnish`,
   },
+  ports: ['80'],
   user: 'root',
   volumes: [
     `${options.confDest}/launch.sh:/launch.sh`,
@@ -26,8 +28,10 @@ const varnishSsl = options => ({
 module.exports = {
   name: 'varnish',
   config: {
-    version: '4.1',
+    version: '6.0',
     supported: ['6', '6.0', '4', '4.1'],
+    patchesSupported: true,
+    legacy: ['4', '4.1'],
     backends: ['appserver'],
     confSrc: path.resolve(__dirname, '..', 'config'),
     backend_port: '80',
@@ -65,6 +69,7 @@ module.exports = {
         networks: {default: {aliases: [`${options.name}_varnish`]}},
         ports: ['80'],
         volumes: [
+          `${options.data}:/var/lib/varnish`,
           `${options.confDest}/lando.default.vcl.tmpl:/etc/gotpl/default.vcl.tmpl`,
           `${options.confDest}/lando.varnishd.init.d.tmpl:/etc/gotpl/varnishd.init.d.tmpl`,
         ],
