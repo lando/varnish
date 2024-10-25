@@ -1,12 +1,11 @@
-Varnish Example
-===============
+# CustomVarnish Example
+
 
 This example exists primarily to test the following documentation:
 
 * [Varnish Service](https://docs.devwithlando.io/tutorials/varnish.html)
 
-Start up tests
---------------
+## Start up tests
 
 Run the following commands to get up and running with this example.
 
@@ -16,33 +15,31 @@ lando poweroff
 lando start
 ```
 
-Verification commands
----------------------
+## Verification commands
 
 Run the following commands to validate things are rolling as they should.
 
 ```bash
-# Should also serve over https if specified
-lando ssh -s custom_ssl -c "curl https://localhost | grep sophisticated"
+# Should serve over https if specified
+lando exec curly -- curl https://custom_ssl.landovarnishcustom.internal | grep sophisticated
 
-# Shoule use a custom vcl file if specified
-lando ssh -s custom -c "cat /etc/varnish/lando.vcl | grep LANDOVARNISH"
-lando ssh -s custom -c "env | grep LANDO_CUSTOM_VCL | grep YOUBETCHA"
-lando ssh -s custom -c "curl -I localhost" | grep X-Lando-Varnish | grep capes
+# Should use a custom vcl file if specified
+lando exec custom -- cat /etc/varnish/lando.vcl | grep LANDOVARNISH
+lando exec custom -- env | grep LANDO_CUSTOM_VCL | grep YOUBETCHA
+lando exec curly -- curl -I custom.landovarnishcustom.internal | grep X-Lando-Varnish | grep capes
 
 # Should inherit overrides from its generator
-lando ssh -s custom -c "env | grep MEGAMAN | grep X"
-lando ssh -s custom_ssl -c "env | grep MEGAMAN | grep X"
+lando exec custom -- env | grep MEGAMAN | grep X
+lando exec custom_ssl -- env | grep MEGAMAN | grep X
 
 # Should use a custom backend port when specified
-lando ssh -s customport -c "curl http://localhost | grep SAW"
+lando exec curly -- curl http://customport.landovarnishcustom.internal | grep SAW
 
 # Should use a custom backend port with SSL if specified
-lando ssh -s customport_ssl -c "curl https://localhost | grep SAW"
+lando exec curly -- curl https://customport_ssl.landovarnishcustom.internal | grep SAW
 ```
 
-Destroy tests
--------------
+## Destroy tests
 
 Run the following commands to trash this app like nothing ever happened.
 
