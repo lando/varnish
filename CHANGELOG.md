@@ -1,4 +1,6 @@
 ## {{ UNRELEASED_VERSION }} - [{{ UNRELEASED_DATE }}]({{ UNRELEASED_LINK }})
+
+## v1.2.0 - [October 25, 2024](https://github.com/lando/varnish/releases/tag/v1.2.0)
 * Updated release process to generate an edge release when stable releases are created.
 
 ## v1.1.0 - [March 8, 2024](https://github.com/lando/varnish/releases/tag/v1.1.0)
