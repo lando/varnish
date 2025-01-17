@@ -2,7 +2,7 @@
 
 This example exists primarily to test the following documentation:
 
-* [Varnish Service](https://docs.devwithlando.io/tutorials/varnish.html)
+* [Varnish Service](https://docs.lando.dev/plugins/varnish)
 
 ## Start up tests
 

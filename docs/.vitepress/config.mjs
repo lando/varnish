@@ -34,7 +34,7 @@ function sidebar() {
       items: [
         {text: 'Overview', link: '/'},
         {text: 'Installation', link: '/install'},
-        {text: 'Usage', link: '/config'},
+        {text: 'Configuration', link: '/config'},
       ],
     },
     {
