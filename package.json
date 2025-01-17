@@ -43,12 +43,12 @@
     "test": "npm run lint && npm run test:unit"
   },
   "dependencies": {
-    "@lando/nginx": "^1.4.4",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.16.0",
     "@lando/leia": "^1.0.0-beta.4",
+    "@lando/nginx": "^1.4.4",
     "@lando/python": "^0.8.0",
     "@lando/vitepress-theme-default-plus": "^1.1.0-beta.24",
     "chai": "^4.3.4",

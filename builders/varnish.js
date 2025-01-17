@@ -4,29 +4,6 @@
 const path = require('path');
 const _ = require('lodash');
 
-// Helper to get varnsh ssl nginx
-const varnishSsl = options => {
-  return {
-    command: `/launch.sh /opt/bitnami/nginx/conf/lando.conf`,
-    image: 'bitnami/nginx:1.27.3-debian-12-r5',
-    depends_on: [options.name],
-    environment: {
-      NGINX_DAEMON_USER: 'root',
-      NGINX_DAEMON_GROUP: 'root',
-      NGINX_HTTP_PORT_NUMBER: '80',
-      NGINX_HTTPS_PORT_NUMBER: '443',
-      LANDO_VARNISH_ALIAS: `${options.name}_varnish`,
-      LANDO_VARNISH_UPSTREAM: `${options.name}.${options._app.project}.internal`,
-      LANDO_NEEDS_EXEC: 'DOEEET',
-    },
-    user: 'root',
-    volumes: [
-      `${options.confDest}/launch.sh:/launch.sh`,
-      `${options.confDest}/${options.defaultFiles.ssl}:/opt/bitnami/nginx/conf/lando.conf`,
-    ],
-  };
-};
-
 // Builder
 module.exports = {
   name: 'varnish',
@@ -94,10 +71,20 @@ module.exports = {
         // Set the opts for this custom swill
         const sslOpts = _.assign(_.cloneDeep(options), {
           name: `${options.name}_ssl`,
-          type: 'varnish-nginx',
-          version: 'custom',
-          config: {
-            server: `${options.confDest}/${options.defaultFiles.ssl}`,
+          type: 'lando',
+          api: '3',
+          services: {
+            image: 'nginx:1.27.3',
+            command: '/docker-entrypoint.sh nginx -g "daemon off;"',
+            depends_on: [options.name],
+            environment: {
+              LANDO_VARNISH_ALIAS: `${options.name}_varnish`,
+              LANDO_VARNISH_UPSTREAM: [options._app.project, options.name, '1'].join(separator),
+            },
+            ports: ['443'],
+            volumes: [
+              `${options.confDest}/${options.defaultFiles.ssl}:/etc/nginx/templates/default.conf.template`,
+            ],
           },
           info: {
             backend: options.name,
@@ -105,18 +92,18 @@ module.exports = {
           },
           meUser: 'www-data',
           overrides: require('../utils/clone-overrides')(options.overrides),
-          ports: ['443'],
           ssl: true,
           sslExpose: true,
         });
 
         // Set another lando service we can pass down the stream
-        const LandoCompose = factory.get('_lando');
-        const nginx = {services: _.set({}, sslOpts.name, varnishSsl(options))};
-        const data = new LandoCompose(sslOpts.name, sslOpts, nginx);
+        const Lando3Service = factory.get('lando', 3);
+        const data = new Lando3Service(sslOpts.name, sslOpts);
+
         // This is a trick to basically replicate what happens upstream
         options._app.add(data);
         options._app.info.push(data.info);
+
         // Indicate the relationship on the primary service
         options.info.ssl_served_by = sslOpts.name;
       }

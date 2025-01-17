@@ -1,12 +1,11 @@
 upstream varnish {
-  server {{LANDO_VARNISH_UPSTREAM}};
+  server ${LANDO_VARNISH_UPSTREAM};
 }
 
 server {
   listen *:443 ssl;
   server_name localhost;
 
-  ssl on;
   ssl_certificate           /certs/cert.crt;
   ssl_certificate_key       /certs/cert.key;
 
