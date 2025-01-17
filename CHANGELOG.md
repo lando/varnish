@@ -1,5 +1,7 @@
 ## {{ UNRELEASED_VERSION }} - [{{ UNRELEASED_DATE }}]({{ UNRELEASED_LINK }})
 
+## v1.3.0 - [January 17, 2025](https://github.com/lando/varnish/releases/tag/v1.3.0)
+
 * Fixed vague service naming causing incorrect service resolution in some situations [#5](https://github.com/lando/varnish/issues/5)
 * Fixed `ssl` termination connection issues
 * Improved `lando info` to include `backend_port`
