@@ -33,6 +33,7 @@ module.exports = {
   config: {
     version: '4.1',
     supported: ['6', '6.0', '4', '4.1'],
+    backend: undefined,
     backends: ['appserver'],
     confSrc: path.resolve(__dirname, '..', 'config'),
     backend_port: '80',
@@ -51,15 +52,21 @@ module.exports = {
     constructor(id, options = {}, factory) {
       options = _.merge({}, config, options);
 
-      // Arrayify the backend
+      // Arrayify the backends
       if (!_.isArray(options.backends)) options.backends = [options.backends];
+      // if we have no backend then use the first entry in backends
+      if (!options.backend && options.backends.length > 0) options.backend = options.backends[0];
+
+      // get the orchestrator separator
+      const separator = options?._app?._lando?.config?.orchestratorSeparator ?? '_';
+
       // Build the default stuff here
       const varnish = {
         image: `wodby/varnish:${options.version}`,
         command: '/docker-entrypoint.sh /etc/init.d/varnishd',
-        depends_on: options.backends,
+        depends_on: [options.backend],
         environment: {
-          VARNISH_BACKEND_HOST: options.backends.join(' '),
+          VARNISH_BACKEND_HOST: [options._app.project, options.backend, '1'].join(separator),
           VARNISH_BACKEND_PORT: options.backend_port,
           LANDO_NO_USER_PERMS: 'NOTGONNADOIT',
           LANDO_WEBROOT_USER: 'varnish',
@@ -78,7 +85,7 @@ module.exports = {
       // Change the me user
       options.meUser = 'varnish';
       // Set some info about our backends
-      options.info = {backends: options.backends};
+      options.info = {backend: `${options.backend}:${options.backend_port}`};
       // Set the varnish
       options.sources.push({services: _.set({}, options.name, varnish)});
 
@@ -116,6 +123,6 @@ module.exports = {
 
       // Send it downstream
       super(id, options, ..._.flatten(options.sources));
-    };
+    }
   },
 };
