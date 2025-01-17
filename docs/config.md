@@ -5,16 +5,15 @@ description: Learn how to configure the Lando Varnish service.
 
 # Configuration
 
-Here are the configuration options, set to the default values, for this service. If you are unsure about where this goes or what this means, we *highly recommend* scanning the [services documentation](https://docs.lando.dev/core/v3/services/lando.html) to get a good handle on how the magicks work.
+Here are the configuration options, set to the default values, for this service. If you are unsure about where this goes or what this means, we *highly recommend* scanning the [services documentation](https://docs.lando.dev/services/lando-3.html) to get a good handle on how the magicks work.
 
-Also note that options, in addition to the [build steps](https://docs.lando.dev/core/v3/services/lando.html#build-steps) and [overrides](https://docs.lando.dev/core/v3/services/lando.html#overrides) that are available to every service, are shown below:
+Also note that options, in addition to the [build steps](https://docs.lando.dev/services/lando-3.html#build-steps) and [overrides](https://docs.lando.dev/services/lando-3.html#overrides) that are available to every service, are shown below:
 
 ```yaml
 services:
   myservice:
-    type: varnish:4.1
-    backends:
-      - appserver
+    type: varnish:6.0
+    backend: appserver
     backend_port: 80
     ssl: false
     config:
@@ -25,28 +24,28 @@ services:
 
 ## Connecting to backend services
 
-You will need to list the `http` backend services you want `varnish` to use. Note that the services in this list should be serving content on port `80`. They can be discovered by running [lando info](https://docs.lando.dev/cli/info.html).
+You will need to specify the `http` backend services you want `varnish` to use.
 
 An example of a Landofile's `services` config that connects to a `nginx` backend called `web1` is shown below:
 
 ```yaml
 services:
   myservice:
-    type: varnish
-    backends:
-      - web1
+    type: varnish:6.0
+    backend: web1
   web1:
     type: nginx
 ```
 
 ## Setting a port
 
-While we assume your `varnish` service is running on port `80`, we recognize that many apps also run on other ports. You can easily change our default to match whatever your app needs. Note that this port applies to **ALL BACKENDS**.
+While we assume your `varnish` service is running on port `80`, we recognize that many apps also run on other ports. You can easily change our default to match whatever your app needs.
 
 ```yaml
 services:
   myservice:
-    type: varnish
+    type: varnish:6.0
+    backend: web2
     backend_port: 8080
 ```
 
@@ -74,7 +73,7 @@ Note that you can put your configuration files anywhere inside your application 
 ```yaml
 services:
   myservice:
-    type: varnish
+    type: varnish:6.0
     config:
       vcl: config/custom.vcl
 ```
@@ -83,7 +82,7 @@ services:
 
 There are also [several envvars](https://github.com/wodby/varnish) exposed by the underlying image we use that you can set to further customize how your Varnish works. **These are not officially supported** so we *highly recommend* you do not alter them unless you know what you are doing. Even then, YMMV.
 
-That said, you will need to use a [service override](https://docs.lando.dev/core/v3/services/lando.html#overrides) to take advantage of them as shown below:
+That said, you will need to use a [service override](https://docs.lando.dev/services/lando-3.html#overrides) to take advantage of them as shown below:
 
 ```yaml
 myservice:
