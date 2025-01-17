@@ -1,4 +1,4 @@
-# Varnish 6.x Example
+# Varnish Defaults Example
 
 This example exists primarily to test the following documentation:
 
@@ -19,8 +19,8 @@ lando start
 Run the following commands to validate things are rolling as they should.
 
 ```bash
-# Should use varnish 6.x
-lando ssh -s defaults -c "varnishd -V 2>&1 | grep varnish-6"
+# Should use varnish 4.x by default
+lando ssh -s defaults -c "varnishd -V 2>&1 | grep varnish-4"
 
 # Should backend from appserver by default
 lando ssh -s defaults -c "curl localhost | grep sophisticated"

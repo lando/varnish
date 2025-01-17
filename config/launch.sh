@@ -21,6 +21,7 @@ lando_debug $(cat /opt/bitnami/nginx/conf/nginx.conf)
 
 # Render the template if render-template exists
 sed 's@{{LANDO_VARNISH_ALIAS}}@'"${LANDO_VARNISH_ALIAS}"'@g' "$VHOST" > /opt/bitnami/nginx/conf/vhosts/lando.conf
+sed 's@{{LANDO_VARNISH_UPSTREAM}}@'"${LANDO_VARNISH_UPSTREAM}"'@g' "$VHOST" > /opt/bitnami/nginx/conf/vhosts/lando.conf
 
 # Log
 lando_info "Rendered template $VHOST to /opt/bitnami/nginx/conf/vhosts/lando.conf"

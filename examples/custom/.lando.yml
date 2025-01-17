@@ -10,18 +10,18 @@ services:
         MEGAMAN: X
     config:
       vcl: config/custom.vcl
-  customport:
-    type: varnish:6
-    backends:
-      - backend2
-    backend_port: 8000
-    ssl: true
+  # customport:
+  #   type: varnish:6
+  #   backends:
+  #     - backend2
+  #   backend_port: 8000
+  #   ssl: true
   appserver:
     type: nginx
-  backend2:
-    type: python
-    port: 8000
-    command: python /app/python.py
+  # backend2:
+  #   type: python
+  #   port: 8000
+  #   command: python /app/python.py
 
 # This is important because it lets lando know to test against the plugin in this repo
 # DO NOT REMOVE THIS!
