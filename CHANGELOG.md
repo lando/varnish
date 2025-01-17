@@ -1,7 +1,13 @@
 ## {{ UNRELEASED_VERSION }} - [{{ UNRELEASED_DATE }}]({{ UNRELEASED_LINK }})
 
-* Fixed bug causing SSL termination to fail on bad config file
-* Updated to [@lando/nginx@1.4.4](https://github.com/lando/nginx/releases/tag/v1.4.4).
+* Fixed vague service naming causing incorrect service resolution in some situations [#5](https://github.com/lando/varnish/issues/5)
+* Fixed `ssl` termination connection issues
+* Improved `lando info` to include `backend_port`
+* Removed multiple `backends` support [#3](https://github.com/lando/varnish/issues/3)
+* Removed `varnish-nginx` service in favor of generic `Lando 3` service
+* Updated tests and DevOps to `node20`
+* Updated `ssl` termination to use `nginx:1.27.3`
+* Updated the default version to `6.0` [#23](https://github.com/lando/varnish/issues/23)
 
 ## v1.2.3 - [December 6, 2024](https://github.com/lando/varnish/releases/tag/v1.2.3)
 
