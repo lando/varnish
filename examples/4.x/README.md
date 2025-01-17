@@ -1,12 +1,10 @@
-Varnish Example
-===============
+# Varnish 4.x Example
 
 This example exists primarily to test the following documentation:
 
 * [Varnish Service](https://docs.devwithlando.io/tutorials/varnish.html)
 
-Start up tests
---------------
+## Start up tests
 
 Run the following commands to get up and running with this example.
 
@@ -16,8 +14,7 @@ lando poweroff
 lando start
 ```
 
-Verification commands
----------------------
+## Verification commands
 
 Run the following commands to validate things are rolling as they should.
 
@@ -29,8 +26,7 @@ lando ssh -s defaults -c "varnishd -V 2>&1 | grep varnish-4"
 lando ssh -s defaults -c "curl localhost | grep sophisticated"
 ```
 
-Destroy tests
--------------
+## Destroy tests
 
 Run the following commands to trash this app like nothing ever happened.
 

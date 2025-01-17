@@ -5,22 +5,27 @@ const path = require('path');
 const _ = require('lodash');
 
 // Helper to get varnsh ssl nginx
-const varnishSsl = options => ({
-  command: `/launch.sh /opt/bitnami/nginx/conf/lando.conf`,
-  image: 'bitnami/nginx:1.17.10-debian-10-r52',
-  depends_on: [options.name],
-  environment: {
-    NGINX_DAEMON_USER: 'root',
-    NGINX_DAEMON_GROUP: 'root',
-    LANDO_VARNISH_ALIAS: `${options.name}_varnish`,
-    LANDO_NEEDS_EXEC: 'DOEEET',
-  },
-  user: 'root',
-  volumes: [
-    `${options.confDest}/launch.sh:/launch.sh`,
-    `${options.confDest}/${options.defaultFiles.ssl}:/opt/bitnami/nginx/conf/lando.conf`,
-  ],
-});
+const varnishSsl = options => {
+  return {
+    command: `/launch.sh /opt/bitnami/nginx/conf/lando.conf`,
+    image: 'bitnami/nginx:1.27.3-debian-12-r5',
+    depends_on: [options.name],
+    environment: {
+      NGINX_DAEMON_USER: 'root',
+      NGINX_DAEMON_GROUP: 'root',
+      NGINX_HTTP_PORT_NUMBER: '80',
+      NGINX_HTTPS_PORT_NUMBER: '443',
+      LANDO_VARNISH_ALIAS: `${options.name}_varnish`,
+      LANDO_VARNISH_UPSTREAM: `${options.name}.${options._app.project}.internal`,
+      LANDO_NEEDS_EXEC: 'DOEEET',
+    },
+    user: 'root',
+    volumes: [
+      `${options.confDest}/launch.sh:/launch.sh`,
+      `${options.confDest}/${options.defaultFiles.ssl}:/opt/bitnami/nginx/conf/lando.conf`,
+    ],
+  };
+};
 
 // Builder
 module.exports = {
@@ -62,7 +67,6 @@ module.exports = {
           LANDO_WEBROOT_UID: '100',
           LANDO_WEBROOT_GID: '101',
         },
-        networks: {default: {aliases: [`${options.name}_varnish`]}},
         ports: ['80'],
         volumes: [
           `${options.confDest}/lando.default.vcl.tmpl:/etc/gotpl/default.vcl.tmpl`,
@@ -85,10 +89,16 @@ module.exports = {
           name: `${options.name}_ssl`,
           type: 'varnish-nginx',
           version: 'custom',
-          config: `${options.confDest}/${options.defaultFiles.ssl}`,
-          info: {backend: 'edge', managed: true},
+          config: {
+            server: `${options.confDest}/${options.defaultFiles.ssl}`,
+          },
+          info: {
+            backend: options.name,
+            managed: true,
+          },
           meUser: 'www-data',
           overrides: require('../utils/clone-overrides')(options.overrides),
+          ports: ['443'],
           ssl: true,
           sslExpose: true,
         });

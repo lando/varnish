@@ -1,5 +1,6 @@
 ## {{ UNRELEASED_VERSION }} - [{{ UNRELEASED_DATE }}]({{ UNRELEASED_LINK }})
 
+* Fixed bug causing SSL termination to fail on bad config file
 * Updated to [@lando/nginx@1.4.4](https://github.com/lando/nginx/releases/tag/v1.4.4).
 
 ## v1.2.3 - [December 6, 2024](https://github.com/lando/varnish/releases/tag/v1.2.3)
