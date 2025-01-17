@@ -19,7 +19,7 @@ lando start
 Run the following commands to validate things are rolling as they should.
 
 ```bash
-# Should use varnish 4.x by default
+# Should use varnish 4.x
 lando exec defaults -- varnishd -V 2>&1 | grep varnish-4
 
 # Should backend from appserver by default
