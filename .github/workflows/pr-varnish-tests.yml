@@ -15,6 +15,7 @@ jobs:
           - examples/4.x
           - examples/6.x
           - examples/custom
+          - examples/defaults
         lando-version:
           - 3-edge
         os:
