@@ -4,7 +4,7 @@ upstream varnish {
 
 server {
   listen *:443 ssl;
-  server_name  localhost;
+  server_name localhost;
 
   ssl on;
   ssl_certificate           /certs/cert.crt;
