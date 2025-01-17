@@ -1,7 +1,7 @@
 name: lando-varnish-4
 services:
   defaults:
-    type: varnish
+    type: varnish:4
   appserver:
     type: nginx
 
