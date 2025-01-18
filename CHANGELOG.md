@@ -1,5 +1,7 @@
 ## {{ UNRELEASED_VERSION }} - [{{ UNRELEASED_DATE }}]({{ UNRELEASED_LINK }})
 
+## v1.3.1 - [January 18, 2025](https://github.com/lando/varnish/releases/tag/v1.3.1)
+
 * Fixed `ssl` termination service eg a `lando:3` service from incorrectly warning it is a legacy version
 
 ## v1.3.0 - [January 17, 2025](https://github.com/lando/varnish/releases/tag/v1.3.0)
