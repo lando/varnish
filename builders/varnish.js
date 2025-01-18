@@ -75,6 +75,7 @@ module.exports = {
           name: `${options.name}_ssl`,
           type: 'lando',
           api: '3',
+          version: 'custom',
           services: {
             image: 'nginx:1.27.3',
             command: '/docker-entrypoint.sh nginx -g "daemon off;"',
