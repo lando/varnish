@@ -11,6 +11,12 @@ module.exports = {
     version: '6.0',
     supported: ['6', '6.0', '4', '4.1'],
     legacy: ['4', '4.1'],
+    pinPairs: {
+      '6': 'wodby/varnish:6.0-4.21.6',
+      '6.0': 'wodby/varnish:6.0-4.21.6',
+      '4': 'wodby/varnish:4.1-4.14.2',
+      '4.1': 'wodby/varnish:4.1-4.14.2',
+    },
     patchesSupported: true,
     backend: undefined,
     backends: ['appserver'],
