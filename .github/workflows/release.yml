@@ -26,9 +26,13 @@ jobs:
           # Wait for version to be available on npm (handles race with deploy job)
           for i in $(seq 1 30); do
             if npm view "$PACKAGE@$VERSION" version &>/dev/null; then
-              npm dist-tag add "$PACKAGE@$VERSION" latest
-              echo "::notice title=Promoted $VERSION to latest::The latest tag now points to $VERSION"
-              exit 0
+              if npm dist-tag add "$PACKAGE@$VERSION" latest; then
+                echo "::notice title=Promoted $VERSION to latest::The latest tag now points to $VERSION"
+                exit 0
+              else
+                echo "::error title=npm dist-tag add failed::Failed to add latest tag to $PACKAGE@$VERSION"
+                exit 1
+              fi
             fi
             echo "Waiting for $PACKAGE@$VERSION on npm... (attempt $i/30)"
             sleep 10
