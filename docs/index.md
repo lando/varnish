@@ -26,7 +26,7 @@ services:
 ## Legacy versions
 
 ::: warning Using Unsupported Varnish Versions!
-While you can currently use some [EOL Varnish versions](https://endoflife.date/varnish) with Lando, it's worth noting that we also do not support such versions, so your mileage may vary. If you are having issues with unsupported versions and open a ticket about it, the most likely response you will get is "upgrade to a supported version".
+While you can currently use some [EOL Varnish versions](https://endoflife.date/vinyl-cache) with Lando, it's worth noting that we also do not support such versions, so your mileage may vary. If you are having issues with unsupported versions and open a ticket about it, the most likely response you will get is "upgrade to a supported version".
 :::
 
 You can still run these versions with Lando but for all intents and purposes they should be considered deprecated (e.g. YMMV and do not expect a ton of support if you have an issue).
@@ -37,4 +37,3 @@ You can still run these versions with Lando but for all intents and purposes the
 ## Patch versions
 
 This service does not support patch versions but if you **really** need something like that, you could consider using either a [custom compose service](https://docs.lando.dev/plugins/compose) or a service [overrides](https://docs.lando.dev/services/lando-3.html#overrides).
-
